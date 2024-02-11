@@ -13,13 +13,6 @@
  * This library is self-contained and aimed at developers who might appreciate
  * a wider range of functinos for their own WordPress project. :)
  *
- * @category   PHP Script
- * @package    WordPress Article Images
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.5
- * @link       https://github.com/bhalash/article-images
  */
 
 /**
@@ -29,8 +22,6 @@
  * hasn't been set, or $fallback isn't null, it'll set up the image. Correct
  * format is up to yourself.
  *
- * @param   array       $fallback       Fallback images.
- * @return  array       $fallback       Fallback images array.
  */
 
 function set_post_fallback_image($fallback = null) {
@@ -52,7 +43,6 @@ add_action('init', 'set_post_fallback_image', 10, 1);
 /**
  * Get Fallback Image Path
  * -----------------------------------------------------------------------------
- * @return  string      $image          Fallback image path.
  */
 
 function fallback_image_path() {
@@ -63,7 +53,6 @@ function fallback_image_path() {
 /**
  * Get Fallback Image URL
  * -----------------------------------------------------------------------------
- * @return  string      $image          Fallback image URL.
  */
 
 function fallback_image_url() {
@@ -80,8 +69,6 @@ function fallback_image_url() {
  * This extends the functionality of has_post_thumbnail() to include post
  * content images.
  *
- * @param   int/object  $post           Post ID or post object.
- * @return  bool                        Post has any kind of image true/false.
  */
 
 function has_post_image($post) {
@@ -95,8 +82,6 @@ function has_post_image($post) {
 /**
  * See if Post Content Contains Image
  * -----------------------------------------------------------------------------
- * @param   int/object  $post           Post ID or post object.
- * @return  bool                        Post content has image, true/false.
  */
 
 function has_post_content_image($post) {
@@ -114,9 +99,6 @@ function has_post_content_image($post) {
  * image inside an anchor-for a post thumbnail. This wrapper extracts and
  * returns only the URL.
  *
- * @param   int/object  $post           Post ID or post object.
- * @param   string      $size           The requested size of the thumbnail.
- * @return  string                      Thumbnail URL.
  */
 
 function post_thumbnail_url($post, $size = 'large') {
@@ -131,9 +113,6 @@ function post_thumbnail_url($post, $size = 'large') {
 /**
  * Post Attachment Filesystem Path
  * -----------------------------------------------------------------------------
- * @param   int/object  $post           Post ID or post object.
- * @param   string      $size           The requested size of the thumbnail.
- * @return  string                      Filesystem path to the attachment.
  */
 
 function post_thumbnail_path($post, $size = 'large') {
@@ -153,9 +132,6 @@ function post_thumbnail_path($post, $size = 'large') {
  * This functions extracts and returns the first found image in the post,
  * no matter what that image happens to be.
  *
- * @param   int/object  $post           Post ID or post object.
- * @return  string                      Full URL of the first image found.
- * @link    http://goo.gl/WIloQw
  */
 
 function content_first_image($post) {
@@ -176,10 +152,6 @@ function content_first_image($post) {
  * 2. First image in post's content.
  * 3. Sitewide fallback image.
  *
- * @param   int/object  $post           Post ID or post object.
- * @param   bool        $echo           Echo image, true/false.
- * @param   string      $size           Desired size, if WordPress image.
- * @return  string                      Thumbnail image, if it exists.
  */
 
 function post_image_url($post, $echo = false, $size = 'large') {
@@ -205,10 +177,6 @@ function post_image_url($post, $echo = false, $size = 'large') {
 /**
  * Content First Image Filesystem Path
  * -----------------------------------------------------------------------------
- * @param   int/object  $post           Post ID or post object.
- * @param   bool        $echo           Echo image, true/false.
- * @param   string      $size           Desired size, if WordPress image.
- * @return  string                      Filesystem path to the attachment.
  */
 
 function post_image_path($post, $echo = false, $size = 'large') {
@@ -234,10 +202,6 @@ function post_image_path($post, $echo = false, $size = 'large') {
 /**
  * Wrap Post Image as Background Style
  * -----------------------------------------------------------------------------
- * @param   int/object  $post           Post ID or post object.
- * @param   bool        $echo           Echo image, true/false.
- * @param   string      $size           Desired size, if WordPress image.
- * @return  string      $image          The image, wrapped as background-image.
  */
 
 function post_image_url_style($post, $echo = false, $size = 'large') {
@@ -257,8 +221,6 @@ function post_image_url_style($post, $echo = false, $size = 'large') {
 /**
  * Wrap Post Image as <img>
  * -----------------------------------------------------------------------------
- * @param   int/object  $post           Post ID or post object.
- * @return  string      $image          The image, wrapped as <img>
  */
 
 function post_image_url_html($post, $echo = false, $alt = '', $size = 'large') {
@@ -285,8 +247,6 @@ function post_image_url_html($post, $echo = false, $alt = '', $size = 'large') {
  * /This does not guarantee the file or folder exists/. You must independently
  * test for its existence!
  *
- * @param   string      $url            URL to be converted into a local path.
- * @return  string                      Path converted from the URL.
  */
 
 function url_to_path($url) {
@@ -309,8 +269,6 @@ function url_to_path($url) {
  * local, then the URL is first tested as local and then fetched remotely if
  * that fails.
  *
- * @param   string      $image          Path to local image.
- * @return  array                       The dimensions of the image.
  */
 
 function get_local_image_dimensions($image) {

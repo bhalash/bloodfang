@@ -3,13 +3,6 @@
 /**
  * Related Posts
  * -----------------------------------------------------------------------------
- * @category   PHP Script
- * @package    Bloodfang Related Posts
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.1
- * @link       https://github.com/bhalash/related-posts
  */
 
 if (!defined('ABSPATH')) {
@@ -21,8 +14,6 @@ if (!defined('ABSPATH')) {
  * -----------------------------------------------------------------------------
  * Fetch posts related to given post, by category.
  *
- * @param   array             $args       Array of arguments.
- * @return  array             $related    Array of related posts.
  */
 
 function rp_get_related($args) {
@@ -72,10 +63,6 @@ function rp_get_related($args) {
 /**
  * Related Posts Filler
  * -----------------------------------------------------------------------------
- * @param   int/object        $post       Post object.
- * @param   int               $count      Number of related posts to fetch.
- * @param   array             $related    Array of related posts to exclude.
- * @return  array             Filler posts.
  */
 
 function rp_filler_posts($post, $count, $related_posts) {

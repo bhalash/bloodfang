@@ -3,13 +3,6 @@
 /**
  * Theme Comment Functions
  * -----------------------------------------------------------------------------
- * @category   PHP Script
- * @package    Bloodfang
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.0
- * @link       https://github.com/bhalash/bloodfang
  */
 
 function bloodfang_theme_comments($comment, $args, $depth) {
@@ -46,9 +39,6 @@ function bloodfang_theme_comments($comment, $args, $depth) {
 /**
  * Generate Custom Commentform Input HTML
  * -------------------------------------------------------------------------
- * @param   array       $input_fields   Labels for input fields.
- * @param   string      $input_html     Raw HTML for input fields.
- * @param   array       $input_fields   Raw HTML joined with labels.
  */
 
 function bloodfang_commentform_fields($input_fields = null, $input_html = null) {
@@ -72,7 +62,6 @@ function bloodfang_commentform_fields($input_fields = null, $input_html = null) 
  * Wrap Comment Fields in Elements
  * -------------------------------------------------------------------------
  * Wrap comment form fields in <div></div> tags.
- * @link http://wordpress.stackexchange.com/a/172055
  */
 
 function bloodfang_wrap_comment_fields_before() {

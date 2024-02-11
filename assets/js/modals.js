@@ -1,18 +1,12 @@
 /**
  * Modals.
  *
- * @author Mark Grealish <mark@bhalash.com>
- * @copyright 2015 Mark Grealish
- * @license GPL-3.0
- * @version 1.0
- * @link https://github.com/bhalash/bloodfang
  */
 
 (function($, document, window) {
     /**
      * Broadcast to hide all modals when <Esc> is depressed.
      *
-     * @param {object} event - DOM event.
      */
 
     $(document).on('keydown', function(event) {
@@ -26,8 +20,6 @@
      *
      * Show modal if data is set.
      *
-     * @param {object} event - DOM event.
-     * @param {object} data - Binding event data.
      */
 
     $.subscribe('modal:show', function(event, data) {
@@ -42,8 +34,6 @@
      *
      * If there is no data set, hide all modals.
      *
-     * @param {object} event - DOM event.
-     * @param {object} data - Binding event data.
      */
 
     $.subscribe('modal:hide', function(event, data) {
@@ -59,9 +49,6 @@
     /**
      * Set lightbox image when the modal is shown.
      *
-     * @param {object} event - DOM event.
-     * @param {object} data - Binding event data.
-     * @param {object} element - Event triggering element.
      */
 
     $.subscribe('modal:show:lightbox', function(event, data, element) {

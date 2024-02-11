@@ -3,13 +3,6 @@
 /**
  * Bloodfang Assets
  * -----------------------------------------------------------------------------
- * @category   PHP Script
- * @package    Bloodfang
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.0
- * @link       https://github.com/bhalash/bloodfang
  */
 
 add_action('wp_enqueue_scripts', function() {
@@ -45,7 +38,6 @@ add_action('wp_enqueue_scripts', function() {
  * Like, badly break shit if scripts are loaded which depend on others. My
  * theme's JS is optimized to sidestep this problem.
  *
- * @link http://www.davidtiong.com/using-defer-or-async-with-scripts-in-wordpress/
  */
 
 add_filter('script_loader_tag', function($tag, $handle) {
@@ -71,7 +63,6 @@ add_filter('script_loader_tag', function($tag, $handle) {
 /*
  * Load Site JS in Footer
  * -----------------------------------------------------------------------------
- * @link http://www.kevinleary.net/move-javascript-bottom-wordpress/#comment-56740
  */
 
 if (!is_admin()) {
@@ -87,8 +78,6 @@ if (!is_admin()) {
  * -----------------------------------------------------------------------------
  * Load all theme JavaScript.
  *
- * @param   array       $assets         Theme JavaScript assets.
- * @param   array       $paths          Theme asset paths.
  */
 
 function bloodfang_js($assets, $paths) {
@@ -111,8 +100,6 @@ function bloodfang_js($assets, $paths) {
  * -----------------------------------------------------------------------------
  * Load all theme CSS and related Google typefaces.
  *
- * @param   array       $assets         Theme CSS assets.
- * @param   array       $paths          Theme asset paths.
  */
 
 function bloodfang_css($assets, $paths) {
@@ -135,8 +122,6 @@ function bloodfang_css($assets, $paths) {
 /**
  * Parse Google Fonts from Array
  * -----------------------------------------------------------------------------
- * @param   array   $fonts          Array of fonts to be used.
- * @return  string  $google_url     Parsed URL of fonts to be enqueued.
  */
 
 function bloodfang_google_font_url($fonts) {

@@ -6,13 +6,6 @@
  * This is a simple dumb list of the site's archives by date, by category and by
  * tag. You are welcome to insert any custom taxonomies and post types wherever.
  *
- * @category   PHP Script
- * @package    Archive Functions
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.0
- * @link       https://github.com/bhalash/archive-functions
  */
 
 if (!defined('ABSPATH')) {
@@ -24,10 +17,6 @@ if (!defined('ABSPATH')) {
  * -----------------------------------------------------------------------------
  * Return the age of the blog in $format. Defaults to days.
  *
- * @param   string      $format         DateInterval format.
- * @return  string      $blog_age       Age of the blog in $format.
- * @link    https://php.net/manual/en/datetime.diff.php
- * @link    https://php.net/manual/en/class.dateinterval.php
  */
 
 function arc_blog_age($format = '%a') {
@@ -49,10 +38,6 @@ function arc_blog_age($format = '%a') {
 /**
  * Convert Number to Month
  * -----------------------------------------------------------------------------
- * @param   int          $number             The month of the year as a number.
- * @param   string       $format             Format for date.
- * @return  string                           The month as a word.
- * @link    http://stackoverflow.com/a/18467892/1431.00
  */
 
 function arc_get_month_from_number($number, $format = 'M') {
@@ -70,9 +55,6 @@ function arc_get_month_from_number($number, $format = 'M') {
  * 2. Extract the date of the post.
  * 3. Parse that down to the year alone.
  *
- * @param   string      $option_name        Options key for the post count.
- * @return  array       $counts             Returned counts for the
- * @link    http://wordpress.stackexchange.com/a/60862
  */
 
 function arc_timed_archives_count() {
@@ -108,9 +90,6 @@ function arc_timed_archives_count() {
  * given options key. Generating this can be resource intensive, so it makes
  * sense to store this as a variable.
  *
- * @param   string      $option_name        Options key for the post count.
- * @return  array       $counts             Returned counts for the
- * @link    http://wordpress.stackexchange.com/a/60862
  */
 
 function arc_category_archives_count() {
@@ -122,8 +101,6 @@ function arc_category_archives_count() {
  * -----------------------------------------------------------------------------
  * Return the blog's average posts per day, rounded to $percision.
  *
- * @param   int     $precision          Rounding precision.
- * @return  int     $posts_per_day      Number of posts per day.
  */
 
 function arc_post_interval($precision = 2) {
@@ -138,7 +115,6 @@ function arc_post_interval($precision = 2) {
  * WordPress doesn't appear to have a convenient way to count unique comment
  * authors.
  *
- * @return int      $count          count of comment authors.
  */
 
 function arc_get_comment_authors_count($echo = false) {
@@ -191,8 +167,6 @@ function arc_year_first_post($year, $has_image = true) {
  * Rattle off some useful statistics about the age and amount of content on the
  * blog.
  *
- * @param   bool        $echo           Echo stats, true/false.
- * @return  string      $stats          Blog stats, printed or returned.
  */
 
 function arc_blog_statistics($echo = false) {
@@ -224,7 +198,6 @@ function arc_blog_statistics($echo = false) {
 /**
  * Get Total Number of Pages in Query
  * -----------------------------------------------------------------------------
- * @return  int      Total number of pages in current query, rounded up.
  */
 
 function arc_query_page_total() {
@@ -236,7 +209,6 @@ function arc_query_page_total() {
 /**
  * See if Query Has Pages
  * -----------------------------------------------------------------------------
- * @return bool     Query has pages, true/false.
  */
 
 function arc_query_has_pages() {
@@ -251,9 +223,6 @@ function arc_query_has_pages() {
  * post types and private posts are all excluded unless you specify
  * inclusion.
  *
- * @param   bool        $echo       Echo results, true/false.
- * @param   string      $message    Message to output.
- * @return  string      $count      The post count.
  */
 
 function arc_archive_page_count($echo = true, $message = 'Page %s of %s') {
@@ -273,9 +242,6 @@ function arc_archive_page_count($echo = true, $message = 'Page %s of %s') {
  * Return a count of results for the search in the format
  * 'Results 1 to 10 of 200'
  *
- * @param   int     $page_num       Current page nunber.
- * @param   int     $total_results  Total number of search results.
- * @return  string                  Count of results.
  */
 
 function arc_search_results_count($echo = false) {
@@ -315,9 +281,6 @@ function arc_search_results_count($echo = false) {
 /**
  * Generate Ascending and Descending Search Link
  * -----------------------------------------------------------------------------
- * @param   string      $order          'asc' or 'desc'
- * @param   bool        $echo           Echo it, true/false.
- * @return  string      $url            Generated URL.
  */
 
 function arc_search_url($order = null, $echo = true) {

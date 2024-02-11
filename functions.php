@@ -3,13 +3,6 @@
 /**
  * Main PHP Functions
  *
- * @category   PHP Script
- * @package    Bloodfang
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    1.0
- * @link       https://github.com/bhalash/bloodfang
  */
 
 $GLOBALS['bloodfang_version'] = '1.1.3';
@@ -73,8 +66,6 @@ function bloodfang_includes() {
  *
  * Shorthand wrapper for get_template_part to reduce the verbosity of calls.
  *
- * @param   string      $name           Partial name.
- * @param   string      $slug           Partial slug.
  */
 
 function bloodfang_partial($name, $slug = '') {
@@ -152,9 +143,6 @@ function bloodfang_nav_menu_search() {
  *
  * Used to set social icon style.
  *
- * @param   array       $classes        Menu item classes.
- * @param   object      $item           Menu object.
- * @return  array       $classes        Menu item classes.
  */
 
 add_filter('nav_menu_css_class', function($classes, $item) {
@@ -165,10 +153,6 @@ add_filter('nav_menu_css_class', function($classes, $item) {
 /**
  * Get Avatar URL
  *
- * @param   string  $id_or_email    Either user ID or email address.
- * @param   string  $classes        CSS classes to apply.
- * @param   string  $alt            Alt text to attach to the avatar.
- * @return  string                  The avatar's URL.
  */
 
 function bloodfang_avatar($id_or_email, $alt = '', $classes = '', $args = null) {
@@ -197,10 +181,6 @@ function bloodfang_postmeta() {
 /**
  * Remove empty paragraphs created by wpautop()
  *
- * @author Ryan Hamilton
- * @link https://gist.github.com/Fantikerz/5557617
- * @param   string      $content
- * @return  string      $content
  */
 
 add_filter('the_content', function($content) {

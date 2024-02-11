@@ -5,13 +5,6 @@
  * -----------------------------------------------------------------------------
  *  Social Meta generates
  *
- * @category   PHP Script
- * @package    Social Meta
- * @author     Mark Grealish <mark@bhalash.com>
- * @copyright  Copyright (c) 2015 Mark Grealish
- * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
- * @version    3.1
- * @link       https://github.com/bhalash/social-meta
  *
  * This file is part of Social Meta.
  *
@@ -99,9 +92,6 @@ class Social_Meta {
      * generates a dynamic excerpt from the top of the post content, with an
      * optional word length.
      *
-     * @param   object          $post           The post object.
-     * @param   int             $word_limit     Excerpt length in words.
-     * @return  string          $excerpt        Generated post excerpt.
      */
 
     private function generate_meta_desc($post, $word_limit = 55) {
@@ -134,8 +124,6 @@ class Social_Meta {
     /**
      * Generate Meta Info title
      * -------------------------------------------------------------------------
-     * @param   object          $post       Post object.
-     * @return  string          $title      Meta Title.
      */
 
     private function generate_meta_title($post) {
@@ -154,8 +142,6 @@ class Social_Meta {
     /**
      * Post Information
      * -------------------------------------------------------------------------
-     * @param   int         $post            ID of the post.
-     * @param   array       $a_into          Post meta information.
      */
 
     private function generate_post_meta($post = null) {
@@ -251,8 +237,6 @@ class Social_Meta {
      * 2. Tags. All tags are iteratively added.
      * 3. Publisher URL. Site URL is chosen.
      *
-     * @param   int     $post            ID of the post.
-     * @return  array   $single_meta        Extra meta infromation for the post.
      */
 
     private function facebook_single_info($post) {

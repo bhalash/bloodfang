@@ -2,8 +2,6 @@
     /**
      * Event subscribe/unsubscribe.
      *
-     * @link https://davidwalsh.name/pubsub-javascript
-     * @link https://gist.github.com/cowboy/661855
      */
 
     $.observer = $({});
@@ -14,8 +12,6 @@
      * For each action fragment (see below), broadcast an action with that
      * fragment's data:
      *
-     * @param {object} args - Arguments object.
-     * @returns {array} actions - Mapped actions array.
      *
      */
 
@@ -38,9 +34,6 @@
      *
      * fullAction is so because a full action has three parameters.
      *
-     * @param {array} triggers - Split array of action fragments.
-     * @param {array} args - Superset args object.
-     * @returns {object} triggers
      */
 
     $.observer.triggers.data = function(triggers, args) {
@@ -77,11 +70,6 @@
      *
      *  $.observer.trigger(event, [data, arg1, arg2, arg3])
      *
-     * @link https://api.jquery.com/trigger/
-     * @param {array} triggers - Split array of action fragments.
-     * @param {array} args - Superset args object.
-     * @param {object} data - Constructed action data object.
-     * @returns {array} triggers
      *
      */
 
@@ -104,9 +92,6 @@
     /**
      * Subscribe and unsubscribe actions.
      *
-     * @link https://gist.github.com/cowboy/661855
-     * @param {string} name
-     * @param {string} action
      */
 
     $.each({ on: 'subscribe', off: 'unsubscribe' }, function(name, action) {
@@ -138,8 +123,6 @@
      *
      * Just an example, because that's all I need right now.
      *
-     * @param {object} event - DOM event.
-     * @param {bool} false - Prevent normal click action from occurring.
      */
 
     $(document).on('click tap', '[data-click]', function(event) {
