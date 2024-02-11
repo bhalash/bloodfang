@@ -1,27 +1,24 @@
 const concat = require('gulp-concat');
 const gulp = require('gulp');
-const prefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const sass = require('gulp-ruby-sass');
 const sourcemap = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 
-/**
- * Asset Paths
- * -----------------------------------------------------------------------------
- */
+/* Asset Paths
+ * -------------------------------------------------------------------------- */
 
 var assets = {
   css: {
-    main: 'assets/css/style.css',
-    source: 'assets/css/**/*.sass',
-    dest: 'assets/css/'
+    source: 'scss/**/*.sass',
+    dest: 'assets/',
+    main: 'assets/style.css',
   },
   js: {
-    concat: 'bloodfang.js',
-    source: 'assets/js/*.js',
-    dest: 'assets/js/min/'
+    source: 'js/*.js',
+    concat: 'index.js',
+    dest: 'assets/'
   },
   sprites: {
     source: 'assets/css/includes/**/*.svg',
@@ -29,30 +26,14 @@ var assets = {
   }
 };
 
-/**
- * Autoprefixer
- * -----------------------------------------------------------------------------
- */
-
-var prefixes = [
-  'last 2 versions'
-];
-
-/**
- * Regex Replacements in comments
- * -----------------------------------------------------------------------------
- * Remove block comments from unminified output CSS.
- */
-
+// Remove block comments from unminified output CSS.
 var regex = {
   match: /^(\/\*|\s\*|\s{3}=).*[\n\r]/mg,
   replace: ''
 };
 
-/**
- * Move Sprite Assets
- * -----------------------------------------------------------------------------
- */
+/* Move Sprite Assets
+ * -------------------------------------------------------------------------- */
 
 gulp.task('sprites', function() {
   gulp.src(assets.sprites.source)
@@ -60,11 +41,8 @@ gulp.task('sprites', function() {
     .pipe(gulp.dest(assets.sprites.dest));
 });
 
-/**
- * Minify JS
- * -----------------------------------------------------------------------------
- * Minify all scripts in the JS folder.
- */
+/* Minify JS
+ * -------------------------------------------------------------------------- */
 
 gulp.task('js', () => {
   return gulp.src(assets.js.source)
@@ -73,10 +51,8 @@ gulp.task('js', () => {
     .pipe(gulp.dest(assets.js.dest));
 });
 
-/**
- * Production Minified CSS
- * -----------------------------------------------------------------------------
- */
+/* Production Minified CSS
+ * -------------------------------------------------------------------------- */
 
 gulp.task('css', () => {
   sass(assets.css.source, {
@@ -84,14 +60,11 @@ gulp.task('css', () => {
     style: 'compressed'
   })
   .on('error', sass.logError)
-  // .pipe(prefixer(prefixes))
   .pipe(gulp.dest(assets.css.dest));
 });
 
-/**
- * Unminified CSS with Sourcemap
- * -----------------------------------------------------------------------------
- */
+/* Unminified CSS with Sourcemap
+ * -------------------------------------------------------------------------- */
 
 gulp.task('css-dev', ['sprites'], () => {
   return sass(assets.css.source, {
@@ -101,15 +74,12 @@ gulp.task('css-dev', ['sprites'], () => {
   })
   .on('error', sass.logError)
   .pipe(replace(regex.match, regex.replace))
-  .pipe(prefixer(prefixes))
   .pipe(sourcemap.write())
   .pipe(gulp.dest(assets.css.dest));
 });
 
-/**
- * Watch Tasks
- * -----------------------------------------------------------------------------
- */
+/* Watch Tasks
+ * -------------------------------------------------------------------------- */
 
 gulp.task('default', () => {
   gulp.watch(assets.css.source, ['css']);

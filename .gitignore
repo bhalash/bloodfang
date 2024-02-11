@@ -10,3 +10,7 @@
 # Other Files
 /assets/js/analytics.js
 sheepie.zip
+
+# Compiled Files
+assets/*.js
+assets/*.css

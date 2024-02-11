@@ -7,8 +7,8 @@
 
 add_action('wp_enqueue_scripts', function() {
   $paths = [];
-  $paths['css'] = get_template_directory_uri() . '/assets/css/';
-  $paths['js'] = get_template_directory_uri() . '/assets/js/min/';
+  $paths['css'] = get_template_directory_uri() . '/assets/';
+  $paths['js'] = get_template_directory_uri() . '/assets/';
 
   $assets = [];
 
@@ -24,7 +24,7 @@ add_action('wp_enqueue_scripts', function() {
 
   $assets['js'] = [
     // 'script-name' => ['script_path', ['dependency']
-    'functions' => ['bloodfang.js', ['jquery']]
+    'functions' => ['index.js', ['jquery']]
   ];
 
   bloodfang_css($assets, $paths);
