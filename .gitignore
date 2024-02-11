@@ -1,14 +1,12 @@
 # Editor and OS Junk
-
-.sass-cache/
 **/.DS_Store
 **/tags
+*.vim
+.sass-cache/
 
 # Folders
-
 /node_modules
 
 # Other Files
-
 /assets/js/analytics.js
 sheepie.zip

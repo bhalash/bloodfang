@@ -37,7 +37,6 @@ add_action('wp_enqueue_scripts', function() {
  * So, fair warning: this will break the shit out of WordPress jQuery plugins.
  * Like, badly break shit if scripts are loaded which depend on others. My
  * theme's JS is optimized to sidestep this problem.
- *
  */
 
 add_filter('script_loader_tag', function($tag, $handle) {
@@ -51,8 +50,7 @@ add_filter('script_loader_tag', function($tag, $handle) {
     return $tag;
   }
 
-  if (array_key_exists('HTTP_USER_AGENT', $_SERVER)
-    && strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 9.') !== false) {
+  if (array_key_exists('HTTP_USER_AGENT', $_SERVER) && !!strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 9.')) {
 
     return $tag;
   }
@@ -77,7 +75,6 @@ if (!is_admin()) {
  * JavaScript Asset Loader
  * -----------------------------------------------------------------------------
  * Load all theme JavaScript.
- *
  */
 
 function bloodfang_js($assets, $paths) {
@@ -99,7 +96,6 @@ function bloodfang_js($assets, $paths) {
  * CSS Asset Loader
  * -----------------------------------------------------------------------------
  * Load all theme CSS and related Google typefaces.
- *
  */
 
 function bloodfang_css($assets, $paths) {
