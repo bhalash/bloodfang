@@ -1,11 +1,11 @@
-var concat      = require('gulp-concat'),
-    gulp        = require('gulp'),
-    prefixer    = require('gulp-autoprefixer'),
-    rename      = require('gulp-rename'),
-    replace     = require('gulp-replace'),
-    sass        = require('gulp-ruby-sass'),
-    sourcemap   = require('gulp-sourcemaps'),
-    uglify      = require('gulp-uglify');
+const concat = require('gulp-concat');
+const gulp = require('gulp');
+const prefixer = require('gulp-autoprefixer');
+const rename = require('gulp-rename');
+const replace = require('gulp-replace');
+const sass = require('gulp-ruby-sass');
+const sourcemap = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 
 /**
  * Asset Paths
@@ -13,20 +13,20 @@ var concat      = require('gulp-concat'),
  */
 
 var assets = {
-    css: {
-        main:   'assets/css/style.css',
-        source: 'assets/css/**/*.sass',
-        dest:   'assets/css/'
-    },
-    js: {
-        concat: 'bloodfang.js',
-        source: 'assets/js/*.js',
-        dest:   'assets/js/min/'
-    },
-    sprites: {
-        source: 'assets/css/includes/**/*.svg',
-        dest:   'assets/css/vectors'
-    }
+  css: {
+    main: 'assets/css/style.css',
+    source: 'assets/css/**/*.sass',
+    dest: 'assets/css/'
+  },
+  js: {
+    concat: 'bloodfang.js',
+    source: 'assets/js/*.js',
+    dest: 'assets/js/min/'
+  },
+  sprites: {
+    source: 'assets/css/includes/**/*.svg',
+    dest: 'assets/css/vectors'
+  }
 };
 
 /**
@@ -35,7 +35,7 @@ var assets = {
  */
 
 var prefixes = [
-    'last 2 versions'
+  'last 2 versions'
 ];
 
 /**
@@ -45,8 +45,8 @@ var prefixes = [
  */
 
 var regex = {
-    match: /^(\/\*|\s\*|\s{3}=).*[\n\r]/mg,
-    replace: ''
+  match: /^(\/\*|\s\*|\s{3}=).*[\n\r]/mg,
+  replace: ''
 };
 
 /**
@@ -55,9 +55,9 @@ var regex = {
  */
 
 gulp.task('sprites', function() {
-    gulp.src(assets.sprites.source)
-        .pipe(rename({ dirname: '' }))
-        .pipe(gulp.dest(assets.sprites.dest));
+  gulp.src(assets.sprites.source)
+    .pipe(rename({ dirname: '' }))
+    .pipe(gulp.dest(assets.sprites.dest));
 });
 
 /**
@@ -67,10 +67,10 @@ gulp.task('sprites', function() {
  */
 
 gulp.task('js', () => {
-    return gulp.src(assets.js.source)
-        .pipe(uglify())
-        .pipe(concat(assets.js.concat))
-        .pipe(gulp.dest(assets.js.dest));
+  return gulp.src(assets.js.source)
+    .pipe(uglify())
+    .pipe(concat(assets.js.concat))
+    .pipe(gulp.dest(assets.js.dest));
 });
 
 /**
@@ -79,13 +79,13 @@ gulp.task('js', () => {
  */
 
 gulp.task('css', () => {
-    sass(assets.css.source, {
-        emitCompileError: true,
-        style: 'compressed'
-    })
-    .on('error', sass.logError)
-    // .pipe(prefixer(prefixes))
-    .pipe(gulp.dest(assets.css.dest));
+  sass(assets.css.source, {
+    emitCompileError: true,
+    style: 'compressed'
+  })
+  .on('error', sass.logError)
+  // .pipe(prefixer(prefixes))
+  .pipe(gulp.dest(assets.css.dest));
 });
 
 /**
@@ -94,16 +94,16 @@ gulp.task('css', () => {
  */
 
 gulp.task('css-dev', ['sprites'], () => {
-    return sass(assets.css.source, {
-        emitCompileError: true,
-        verbose: true,
-        sourcemap: true
-    })
-    .on('error', sass.logError)
-    .pipe(replace(regex.match, regex.replace))
-    .pipe(prefixer(prefixes))
-    .pipe(sourcemap.write())
-    .pipe(gulp.dest(assets.css.dest));
+  return sass(assets.css.source, {
+    emitCompileError: true,
+    verbose: true,
+    sourcemap: true
+  })
+  .on('error', sass.logError)
+  .pipe(replace(regex.match, regex.replace))
+  .pipe(prefixer(prefixes))
+  .pipe(sourcemap.write())
+  .pipe(gulp.dest(assets.css.dest));
 });
 
 /**
@@ -112,9 +112,9 @@ gulp.task('css-dev', ['sprites'], () => {
  */
 
 gulp.task('default', () => {
-    gulp.watch(assets.css.source, ['css']);
+  gulp.watch(assets.css.source, ['css']);
 });
 
 gulp.task('dev', () => {
-    gulp.watch(assets.css.source, ['css-dev']);
+  gulp.watch(assets.css.source, ['css-dev']);
 });

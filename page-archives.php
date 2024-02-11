@@ -11,42 +11,42 @@
 get_header();
 
 if (!function_exists('arc_year_first_post')) {
-    return;
+  return;
 }
 
 ?>
 
 <div class="archive">
 
-    <?php foreach (arc_timed_archives_count() as $year => $calendar) {
-        printf('<div class="archive-card vspace--full" id="archive-card-%s">', $year);
+  <?php foreach (arc_timed_archives_count() as $year => $calendar) {
+    printf('<div class="archive-card vspace--full" id="archive-card-%s">', $year);
 
-        // Print year name with background image from post of that year.
-        $first_post = arc_year_first_post($year, true);
-        printf('<h2 class="%s" %s><a title="%s" href="%s">%s</a></h2>',
-            'archive-year-name',
-            post_image_url_style($first_post, false),
-            __('Archives for the year ', 'bloodfang') . $year,
-            get_year_link($year),
-            $year
-        );
+    // Print year name with background image from post of that year.
+    $first_post = arc_year_first_post($year, true);
+    printf('<h2 class="%s" %s><a title="%s" href="%s">%s</a></h2>',
+      'archive-year-name',
+      post_image_url_style($first_post, false),
+      __('Archives for the year ', 'bloodfang') . $year,
+      get_year_link($year),
+      $year
+    );
 
-        // One "card" per year.
-        printf('<ul class="%s" id="%s">', 'archive-card-year', $year);
+    // One "card" per year.
+    printf('<ul class="%s" id="%s">', 'archive-card-year', $year);
 
-        foreach ($calendar as $month => $count) {
-            // Per-month items.
-            printf('<li class="%s" id="%s">', 'archive-card-month', $year . '-' . $month);
-            // Actual count or whatever else you want at the bottom.
-            printf('<a class="%s" href="%s">', 'archive-card-data', get_month_link($year, $month));
-            printf('<span class="%s">%s</span>', 'month-name', arc_get_month_from_number($month));
-            printf('<span class="%s">%s</span>', 'month-count', $count);
-            printf('</a>');
-            printf('</li>');
-        }
+    foreach ($calendar as $month => $count) {
+      // Per-month items.
+      printf('<li class="%s" id="%s">', 'archive-card-month', $year . '-' . $month);
+      // Actual count or whatever else you want at the bottom.
+      printf('<a class="%s" href="%s">', 'archive-card-data', get_month_link($year, $month));
+      printf('<span class="%s">%s</span>', 'month-name', arc_get_month_from_number($month));
+      printf('<span class="%s">%s</span>', 'month-count', $count);
+      printf('</a>');
+      printf('</li>');
+    }
 
-        printf('</ul></div>');
-    } ?>
+    printf('</ul></div>');
+  } ?>
 
 </div>
 <hr class="vcenter--double">

@@ -11,24 +11,24 @@ get_header();
 bloodfang_partial('gohome');
 
 printf('<h2 class="%s"><a href="%s">%s</a></h2>',
-    'title vspace--double',
-    get_tag_link($tag->term_taxonomy_id),
-    $tag->name
+  'title vspace--double',
+  get_tag_link($tag->term_taxonomy_id),
+  $tag->name
 );
 
 $tag_posts = get_posts([
-    'posts_per_page' => 30,
-    'orderby' => 'date',
-    'tax_query' => [
-        'taxonomy' => $tag->taxonomy,
-        'field' => 'slug',
-        'terms' => $tag->slug
-    ]
+  'posts_per_page' => 30,
+  'orderby' => 'date',
+  'tax_query' => [
+    'taxonomy' => $tag->taxonomy,
+    'field' => 'slug',
+    'terms' => $tag->slug
+  ]
 ]);
 
 foreach ($tag_posts as $post) {
-    setup_postdata($post);
-    bloodfang_partial('article', 'excerpt');
+  setup_postdata($post);
+  bloodfang_partial('article', 'excerpt');
 }
 
 wp_reset_query();

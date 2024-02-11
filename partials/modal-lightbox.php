@@ -11,7 +11,7 @@
 ?>
 
 <div class="hidden lightbox" data-modal="lightbox" data-click="modal:hide:lightbox" id="lightbox">
-    <a class="lightbox__anchor" href="">
-        <img class="lightbox__image vcenter--double" src="" alt="" />
-    </a>
+  <a class="lightbox__anchor" href="">
+    <img class="lightbox__image vcenter--double" src="" alt="" />
+  </a>
 </div>

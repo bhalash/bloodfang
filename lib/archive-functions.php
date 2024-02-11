@@ -9,7 +9,7 @@
  */
 
 if (!defined('ABSPATH')) {
-    die('-1');
+  die('-1');
 }
 
 /**
@@ -20,19 +20,19 @@ if (!defined('ABSPATH')) {
  */
 
 function arc_blog_age($format = '%a') {
-    $dates = array();
+  $dates = array();
 
-    $dates['first'] = new DateTime(get_posts(array(
-        'posts_per_page' => 1,
-        'order' => 'ASC'
-    ))[0]->post_date);
+  $dates['first'] = new DateTime(get_posts(array(
+    'posts_per_page' => 1,
+    'order' => 'ASC'
+  ))[0]->post_date);
 
-    $dates['last'] = new DateTime(get_posts(array(
-        'posts_per_page' => 1
-    ))[0]->post_date);
+  $dates['last'] = new DateTime(get_posts(array(
+    'posts_per_page' => 1
+  ))[0]->post_date);
 
-    $blog_age = $dates['first']->diff($dates['last'])->format($format);
-    return $blog_age;
+  $blog_age = $dates['first']->diff($dates['last'])->format($format);
+  return $blog_age;
 }
 
 /**
@@ -41,7 +41,7 @@ function arc_blog_age($format = '%a') {
  */
 
 function arc_get_month_from_number($number, $format = 'M') {
-    return date_create_from_format('!m', $number % 12)->format($format);
+  return date_create_from_format('!m', $number % 12)->format($format);
 }
 
 /**
@@ -58,29 +58,29 @@ function arc_get_month_from_number($number, $format = 'M') {
  */
 
 function arc_timed_archives_count() {
-    global $wpdb;
+  global $wpdb;
 
-    $from_date = preg_replace('/-.*/', '', get_posts(array(
-        'posts_per_page' => 1,
-        'order' => 'ASC'
-    ))[0]->post_date);
+  $from_date = preg_replace('/-.*/', '', get_posts(array(
+    'posts_per_page' => 1,
+    'order' => 'ASC'
+  ))[0]->post_date);
 
-    for ($i = date('Y'); $i >= $from_date; $i--) {
-        $counts[$i] = array();
+  for ($i = date('Y'); $i >= $from_date; $i--) {
+    $counts[$i] = array();
 
-        $month = $wpdb->get_results($wpdb->prepare(
-            "SELECT MONTH(post_date) AS post_month, count(ID) AS post_count"
-                . " from {$wpdb->posts} WHERE post_status = 'publish'"
-                . " AND YEAR(post_date) = %d GROUP BY post_month;",
-            $i
-        ), OBJECT_K);
+    $month = $wpdb->get_results($wpdb->prepare(
+      "SELECT MONTH(post_date) AS post_month, count(ID) AS post_count"
+        . " from {$wpdb->posts} WHERE post_status = 'publish'"
+        . " AND YEAR(post_date) = %d GROUP BY post_month;",
+      $i
+    ), OBJECT_K);
 
-        foreach ($month as $m) {
-            $counts[$i][$m->post_month] = $m->post_count;
-        }
+    foreach ($month as $m) {
+      $counts[$i][$m->post_month] = $m->post_count;
     }
+  }
 
-    return $counts;
+  return $counts;
 }
 
 /**
@@ -93,7 +93,7 @@ function arc_timed_archives_count() {
  */
 
 function arc_category_archives_count() {
-    // TODO
+  // TODO
 }
 
 /**
@@ -104,9 +104,9 @@ function arc_category_archives_count() {
  */
 
 function arc_post_interval($precision = 2) {
-    $blog_age_days = arc_blog_age('%a');
-    $post_count = wp_count_posts()->publish;
-    return round($blog_age_days / $post_count, $precision);
+  $blog_age_days = arc_blog_age('%a');
+  $post_count = wp_count_posts()->publish;
+  return round($blog_age_days / $post_count, $precision);
 }
 
 /**
@@ -118,23 +118,23 @@ function arc_post_interval($precision = 2) {
  */
 
 function arc_get_comment_authors_count($echo = false) {
-    $authors = array();
+  $authors = array();
 
-    foreach (get_comments() as $comment) {
-        if (!in_array($comment->comment_author_email, $authors)) {
-            if (!empty($comment->comment_author_email)) {
-                $authors[] = $comment->comment_author_email;
-            }
-        }
+  foreach (get_comments() as $comment) {
+    if (!in_array($comment->comment_author_email, $authors)) {
+      if (!empty($comment->comment_author_email)) {
+        $authors[] = $comment->comment_author_email;
+      }
     }
+  }
 
-    $authors = count($authors);
+  $authors = count($authors);
 
-    if (!$echo) {
-        return $authors;
-    }
+  if (!$echo) {
+    return $authors;
+  }
 
-    printf($authors);
+  printf($authors);
 }
 
 /**
@@ -143,22 +143,22 @@ function arc_get_comment_authors_count($echo = false) {
  */
 
 function arc_year_first_post($year, $has_image = true) {
-    $yearly_posts = get_posts(array(
-        'year' => $year,
-        'order' => 'ASC'
-    ));
+  $yearly_posts = get_posts(array(
+    'year' => $year,
+    'order' => 'ASC'
+  ));
 
-    if ($has_image) {
-        foreach ($yearly_posts as $post) {
-            if (has_post_image($post->ID)) {
-                $first_post = $post;
-            }
-        }
-    } else {
-        $first_post = $yearly_posts[0];
+  if ($has_image) {
+    foreach ($yearly_posts as $post) {
+      if (has_post_image($post->ID)) {
+        $first_post = $post;
+      }
     }
+  } else {
+    $first_post = $yearly_posts[0];
+  }
 
-    return $first_post;
+  return $first_post;
 }
 
 /*
@@ -170,29 +170,29 @@ function arc_year_first_post($year, $has_image = true) {
  */
 
 function arc_blog_statistics($echo = false) {
-    $stats = array();
+  $stats = array();
 
-    $anchor = sprintf('<a title="%s" href="%s">%s</a>',
-        get_bloginfo('name'),
-        home_url(),
-        get_bloginfo('name')
-    );
+  $anchor = sprintf('<a title="%s" href="%s">%s</a>',
+    get_bloginfo('name'),
+    home_url(),
+    get_bloginfo('name')
+  );
 
-    $categories = __('The blog %s has %s posts in %s categories, that are labelled with %s tags.', 'bloodfang');
-    $visitors = __('%s different visitors have left a total of %s comments.', 'bloodfang');
-    $average = __('On average, a new post has been published every %s days over the last %s days.', 'bloodfang');
+  $categories = __('The blog %s has %s posts in %s categories, that are labelled with %s tags.', 'bloodfang');
+  $visitors = __('%s different visitors have left a total of %s comments.', 'bloodfang');
+  $average = __('On average, a new post has been published every %s days over the last %s days.', 'bloodfang');
 
-    $stats[] = sprintf($categories, $anchor, wp_count_posts()->publish, count(get_categories()), count(get_tags()));
-    $stats[] = sprintf($visitors, arc_get_comment_authors_count(), wp_count_comments()->total_comments);
-    $stats[] = sprintf($average, arc_post_interval(), arc_blog_age());
+  $stats[] = sprintf($categories, $anchor, wp_count_posts()->publish, count(get_categories()), count(get_tags()));
+  $stats[] = sprintf($visitors, arc_get_comment_authors_count(), wp_count_comments()->total_comments);
+  $stats[] = sprintf($average, arc_post_interval(), arc_blog_age());
 
-    $stats = implode(' ', $stats);
+  $stats = implode(' ', $stats);
 
-    if (!$echo) {
-        return $stats;
-    }
+  if (!$echo) {
+    return $stats;
+  }
 
-    printf($stats);
+  printf($stats);
 }
 
 /**
@@ -201,9 +201,9 @@ function arc_blog_statistics($echo = false) {
  */
 
 function arc_query_page_total() {
-    global $wp_query;
+  global $wp_query;
 
-    return ceil($wp_query->found_posts / get_option('posts_per_page'));
+  return ceil($wp_query->found_posts / get_option('posts_per_page'));
 }
 
 /**
@@ -212,7 +212,7 @@ function arc_query_page_total() {
  */
 
 function arc_query_has_pages() {
-    return (arc_query_page_total() > 1);
+  return (arc_query_page_total() > 1);
 }
 
 /**
@@ -226,14 +226,14 @@ function arc_query_has_pages() {
  */
 
 function arc_archive_page_count($echo = true, $message = 'Page %s of %s') {
-    $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    $count = sprintf($message, $page, arc_query_page_total());
+  $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  $count = sprintf($message, $page, arc_query_page_total());
 
-    if (!$echo) {
-        return $count;
-    }
+  if (!$echo) {
+    return $count;
+  }
 
-    printf($count);
+  printf($count);
 }
 
 /**
@@ -245,37 +245,37 @@ function arc_archive_page_count($echo = true, $message = 'Page %s of %s') {
  */
 
 function arc_search_results_count($echo = false) {
-    global $wp_query;
+  global $wp_query;
 
-    $total = $wp_query->found_posts;
+  $total = $wp_query->found_posts;
 
-    $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    $posts_per_page = get_option('posts_per_page');
+  $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  $posts_per_page = get_option('posts_per_page');
 
-    /* Position within the query.
-     * i.e. page = 3, posts_per_page = 10
-     * 3 * 10 = 30, so we're on the page that ends with the 30th post.
-     */
+  /* Position within the query.
+   * i.e. page = 3, posts_per_page = 10
+   * 3 * 10 = 30, so we're on the page that ends with the 30th post.
+   */
 
-    $position = $page * $posts_per_page;
+  $position = $page * $posts_per_page;
 
-    // $position - 30 - 10 + 1 = 21, so we're on the page that begins with 21.
-    $count_low  = ($position - $posts_per_page) + 1;
+  // $position - 30 - 10 + 1 = 21, so we're on the page that begins with 21.
+  $count_low  = ($position - $posts_per_page) + 1;
 
-    // Stops an overage on the final page of the search.
-    $count_high = ($position > $total_results) ? $total : $position;
+  // Stops an overage on the final page of the search.
+  $count_high = ($position > $total_results) ? $total : $position;
 
-    $count = sprintf(__('Results %s to %s of %s', 'bloodfang'),
-        $count_low,
-        $count_high,
-        $total
-    );
+  $count = sprintf(__('Results %s to %s of %s', 'bloodfang'),
+    $count_low,
+    $count_high,
+    $total
+  );
 
-    if (!$echo) {
-        return $count;
-    }
+  if (!$echo) {
+    return $count;
+  }
 
-    printf($count);
+  printf($count);
 }
 
 /**
@@ -284,27 +284,27 @@ function arc_search_results_count($echo = false) {
  */
 
 function arc_search_url($order = null, $echo = true) {
-    if (!$order) {
-        $order = 'asc';
-    }
+  if (!$order) {
+    $order = 'asc';
+  }
 
-    $query = get_search_query();
-    $url = array();
+  $query = get_search_query();
+  $url = array();
 
-    $url[] = esc_url(home_url('/'));
-    $url[] = '?s=';
-    $url[] = esc_attr($query);
-    $url[] = '&sort=date';
-    $url[] = '&order=';
-    $url[] = $order;
+  $url[] = esc_url(home_url('/'));
+  $url[] = '?s=';
+  $url[] = esc_attr($query);
+  $url[] = '&sort=date';
+  $url[] = '&order=';
+  $url[] = $order;
 
-    $url = implode('', $url);
+  $url = implode('', $url);
 
-    if (!$echo) {
-        return $url;
-    }
+  if (!$echo) {
+    return $url;
+  }
 
-    printf($url);
+  printf($url);
 }
 
 ?>

@@ -23,244 +23,244 @@
  */
 
 class Social_Meta {
-    static $instantiated = false;
+  static $instantiated = false;
 
-    private static $errors = array(
-        'unique' => 'Error: Social Meta may only be instantiated once.',
-        'image' => 'Error: A fallback image must be provided. See README.md.',
-        'facebook' => 'Error: a Facebook account must be provided.'
-    );
+  private static $errors = array(
+    'unique' => 'Error: Social Meta may only be instantiated once.',
+    'image' => 'Error: A fallback image must be provided. See README.md.',
+    'facebook' => 'Error: a Facebook account must be provided.'
+  );
 
-    // Supplied Twitter and Facebook accounts.
-    private static $facebook = null;
-    private static $twitter = null;
+  // Supplied Twitter and Facebook accounts.
+  private static $facebook = null;
+  private static $twitter = null;
 
-    // Meta information array.
-    public static $meta = [];
+  // Meta information array.
+  public static $meta = [];
 
-    public function __construct($args) {
-        if (self::$instantiated) {
-            /* Throw error if more than once instance is running, because more
-             * than one instance leads to a mess of code in header */
-            throw new Exception(self::$errors['unique']);
-        }
-
-        if (isset($args['fallback']) && get_option('article_images_fallback') !== $args['fallback']) {
-            set_fallback_image($args['fallback_image']);
-        }
-
-        if (!isset($args['facebook'])) {
-            throw new Exception(self::$errors['facebook']);
-        }
-
-        if (isset($args['twitter'])) {
-            self::$twitter = $args['twitter'];
-        }
-
-        self::$facebook = $args['facebook'];
-        self::$instantiated = true;
-        add_action('wp_head', [$this, 'social_meta']);
+  public function __construct($args) {
+    if (self::$instantiated) {
+      /* Throw error if more than once instance is running, because more
+       * than one instance leads to a mess of code in header */
+      throw new Exception(self::$errors['unique']);
     }
 
-    /**
-     * Output Open Graph and Twitter Card Tags
-     * -------------------------------------------------------------------------
-     * Call the Open Graph and Twitter Card functions.
-     */
-
-    public function social_meta() {
-        if (!is_404() && !is_search()) {
-            // Generate base social meta.
-            $this->generate_post_meta();
-
-            // Output Open Graph meta tags.
-            $this->open_graph_tags();
-
-            if (self::$twitter) {
-                // Output Twitter Card meta tags, if set.
-                $this->twitter_card_tags();
-            }
-        }
+    if (isset($args['fallback']) && get_option('article_images_fallback') !== $args['fallback']) {
+      set_fallback_image($args['fallback_image']);
     }
 
-    /**
-     * Dynamic Excerpt
-     * -------------------------------------------------------------------------
-     * WordPress's get_the_exerpt() and wp_trim_excerpt() functions only work
-     * within the post loop, and the $post object's post_excerpt only contains
-     * the hand-generate excerpt from the post edit screen. This function
-     * generates a dynamic excerpt from the top of the post content, with an
-     * optional word length.
-     *
-     */
-
-    private function generate_meta_desc($post, $word_limit = 55) {
-        $desc = '';
-
-        if ($post && (is_single() || is_page())) {
-            $desc = strip_tags(apply_filters('the_excerpt', $post->post_excerpt));
-
-            if (!$desc) {
-                $desc = preg_replace('/<\/p>.*$/s', '', apply_filters('the_content', $post->post_content));
-                $desc = strip_tags($desc);
-
-                if (str_word_count($desc) >= $word_limit) {
-                    // Trim description to set length and add ellipsis.
-                    $desc = explode(' ', $desc);
-                    $desc = array_slice($desc, 0, $word_limit);
-                    $desc[] = '[...]';
-                    $desc = implode(' ', $desc);
-                }
-            }
-        }
-
-        if (!$desc) {
-            $desc = get_bloginfo('description');
-        }
-
-        return trim($desc);
+    if (!isset($args['facebook'])) {
+      throw new Exception(self::$errors['facebook']);
     }
 
-    /**
-     * Generate Meta Info title
-     * -------------------------------------------------------------------------
-     */
-
-    private function generate_meta_title($post) {
-        $title = '';
-
-        if ($post && (is_single() || is_page())) {
-            $title = apply_filters('the_title', $post->post_title);
-        }
-
-        $title = $title ?: wp_title('-', false, 'right');
-        $title = $title ?: get_bloginfo('name');
-
-        return $title;
+    if (isset($args['twitter'])) {
+      self::$twitter = $args['twitter'];
     }
 
-    /**
-     * Post Information
-     * -------------------------------------------------------------------------
-     */
+    self::$facebook = $args['facebook'];
+    self::$instantiated = true;
+    add_action('wp_head', [$this, 'social_meta']);
+  }
 
-    private function generate_post_meta($post = null) {
-        if (!($post = get_post($post))) {
-            global $post;
+  /**
+   * Output Open Graph and Twitter Card Tags
+   * -------------------------------------------------------------------------
+   * Call the Open Graph and Twitter Card functions.
+   */
+
+  public function social_meta() {
+    if (!is_404() && !is_search()) {
+      // Generate base social meta.
+      $this->generate_post_meta();
+
+      // Output Open Graph meta tags.
+      $this->open_graph_tags();
+
+      if (self::$twitter) {
+        // Output Twitter Card meta tags, if set.
+        $this->twitter_card_tags();
+      }
+    }
+  }
+
+  /**
+   * Dynamic Excerpt
+   * -------------------------------------------------------------------------
+   * WordPress's get_the_exerpt() and wp_trim_excerpt() functions only work
+   * within the post loop, and the $post object's post_excerpt only contains
+   * the hand-generate excerpt from the post edit screen. This function
+   * generates a dynamic excerpt from the top of the post content, with an
+   * optional word length.
+   *
+   */
+
+  private function generate_meta_desc($post, $word_limit = 55) {
+    $desc = '';
+
+    if ($post && (is_single() || is_page())) {
+      $desc = strip_tags(apply_filters('the_excerpt', $post->post_excerpt));
+
+      if (!$desc) {
+        $desc = preg_replace('/<\/p>.*$/s', '', apply_filters('the_content', $post->post_content));
+        $desc = strip_tags($desc);
+
+        if (str_word_count($desc) >= $word_limit) {
+          // Trim description to set length and add ellipsis.
+          $desc = explode(' ', $desc);
+          $desc = array_slice($desc, 0, $word_limit);
+          $desc[] = '[...]';
+          $desc = implode(' ', $desc);
         }
-
-        if (!$post) {
-            return;
-        }
-
-        $title = $this->generate_meta_title($post);
-        $description = $this->generate_meta_desc($post);
-
-        $meta = [
-            'ID' => $post,
-            'title' => $title,
-            'description' => $description,
-            'site_name' => get_bloginfo('name'),
-            'url' => get_site_url() . $_SERVER['REQUEST_URI'],
-            'image' => post_image_url($post),
-            'image_size' => get_local_image_dimensions(post_image_path($post)),
-            'type' => (is_single() || is_page()) ? 'article' : 'website',
-            'locale' => get_locale(),
-        ];
-
-        self::$meta = $meta;
+      }
     }
 
-    /**
-     * Twitter Card Meta Information
-     * -------------------------------------------------------------------------
-     * This function /should/ present all of the relevant and correct
-     * information for Twitter Card.
-     */
-
-    private function twitter_card_tags() {
-        $meta =& self::$meta;
-
-        $twitter_meta = [
-            'twitter:site' => self::$twitter,
-            'twitter:card' => 'summary_large_image',
-            'twitter:title' => $meta['title'],
-            'twitter:description' => $meta['description'],
-            'twitter:image' => $meta['image'],
-            'twitter:url' => $meta['url']
-        ];
-
-        foreach ($twitter_meta as $key => $value) {
-            printf('<meta name="%s" content="%s">', $key, $value);
-        }
+    if (!$desc) {
+      $desc = get_bloginfo('description');
     }
 
-    /**
-     * Open Graph Meta Information
-     * -------------------------------------------------------------------------
-     * This function /should/ present all of the relevant and correct
-     * information for Open Graph scrapers.
-     */
+    return trim($desc);
+  }
 
-    private function open_graph_tags() {
-        global $post;
-        $meta =& self::$meta;
+  /**
+   * Generate Meta Info title
+   * -------------------------------------------------------------------------
+   */
 
-        $facebook_meta = [
-            'og:title' => $meta['title'],
-            'og:site_name' => $meta['site_name'],
-            'og:url' => $meta['url'],
-            'og:description' => $meta['description'],
-            'og:image' => $meta['image'],
-            'og:image:width' => $meta['image_size'][0],
-            'og:image:height' => $meta['image_size'][1],
-            'og:type' => $meta['type'],
-            'og:locale' => $meta['locale'],
-        ];
+  private function generate_meta_title($post) {
+    $title = '';
 
-        if (is_single() || is_page()) {
-            $single_meta = $this->facebook_single_info($post);
-            $facebook_meta = array_merge($facebook_meta, $single_meta);
-        }
-
-        foreach ($facebook_meta as $key => $value) {
-            printf('<meta property="%s" content="%s">', $key, $value);
-        }
+    if ($post && (is_single() || is_page())) {
+      $title = apply_filters('the_title', $post->post_title);
     }
 
-    /**
-     * Facebook Single Post Information
-     * -------------------------------------------------------------------------
-     * Facebook requires some extra categorization information for single posts:
-     *
-     * 1. Category. First post category is ascending numerical order is chosen.
-     * 2. Tags. All tags are iteratively added.
-     * 3. Publisher URL. Site URL is chosen.
-     *
-     */
+    $title = $title ?: wp_title('-', false, 'right');
+    $title = $title ?: get_bloginfo('name');
 
-    private function facebook_single_info($post) {
-        $category = 'article';
+    return $title;
+  }
 
-        if (!is_page()) {
-            $category = get_the_category($post->ID)[0]->cat_name;
-            $category = $category ?: get_category(get_option('default_category'))->cat_name;
-        }
+  /**
+   * Post Information
+   * -------------------------------------------------------------------------
+   */
 
-        $taglist = ['single'];
-
-        foreach (wp_get_post_tags($post->ID) as $tag) {
-            $taglist[] = $tag->name;
-        }
-
-        $single_meta = [
-            'article:section' => $category,
-            'article:tag' => implode(' ', $taglist),
-            'article:publisher' => self::$facebook
-        ];
-
-        return $single_meta;
+  private function generate_post_meta($post = null) {
+    if (!($post = get_post($post))) {
+      global $post;
     }
+
+    if (!$post) {
+      return;
+    }
+
+    $title = $this->generate_meta_title($post);
+    $description = $this->generate_meta_desc($post);
+
+    $meta = [
+      'ID' => $post,
+      'title' => $title,
+      'description' => $description,
+      'site_name' => get_bloginfo('name'),
+      'url' => get_site_url() . $_SERVER['REQUEST_URI'],
+      'image' => post_image_url($post),
+      'image_size' => get_local_image_dimensions(post_image_path($post)),
+      'type' => (is_single() || is_page()) ? 'article' : 'website',
+      'locale' => get_locale(),
+    ];
+
+    self::$meta = $meta;
+  }
+
+  /**
+   * Twitter Card Meta Information
+   * -------------------------------------------------------------------------
+   * This function /should/ present all of the relevant and correct
+   * information for Twitter Card.
+   */
+
+  private function twitter_card_tags() {
+    $meta =& self::$meta;
+
+    $twitter_meta = [
+      'twitter:site' => self::$twitter,
+      'twitter:card' => 'summary_large_image',
+      'twitter:title' => $meta['title'],
+      'twitter:description' => $meta['description'],
+      'twitter:image' => $meta['image'],
+      'twitter:url' => $meta['url']
+    ];
+
+    foreach ($twitter_meta as $key => $value) {
+      printf('<meta name="%s" content="%s">', $key, $value);
+    }
+  }
+
+  /**
+   * Open Graph Meta Information
+   * -------------------------------------------------------------------------
+   * This function /should/ present all of the relevant and correct
+   * information for Open Graph scrapers.
+   */
+
+  private function open_graph_tags() {
+    global $post;
+    $meta =& self::$meta;
+
+    $facebook_meta = [
+      'og:title' => $meta['title'],
+      'og:site_name' => $meta['site_name'],
+      'og:url' => $meta['url'],
+      'og:description' => $meta['description'],
+      'og:image' => $meta['image'],
+      'og:image:width' => $meta['image_size'][0],
+      'og:image:height' => $meta['image_size'][1],
+      'og:type' => $meta['type'],
+      'og:locale' => $meta['locale'],
+    ];
+
+    if (is_single() || is_page()) {
+      $single_meta = $this->facebook_single_info($post);
+      $facebook_meta = array_merge($facebook_meta, $single_meta);
+    }
+
+    foreach ($facebook_meta as $key => $value) {
+      printf('<meta property="%s" content="%s">', $key, $value);
+    }
+  }
+
+  /**
+   * Facebook Single Post Information
+   * -------------------------------------------------------------------------
+   * Facebook requires some extra categorization information for single posts:
+   *
+   * 1. Category. First post category is ascending numerical order is chosen.
+   * 2. Tags. All tags are iteratively added.
+   * 3. Publisher URL. Site URL is chosen.
+   *
+   */
+
+  private function facebook_single_info($post) {
+    $category = 'article';
+
+    if (!is_page()) {
+      $category = get_the_category($post->ID)[0]->cat_name;
+      $category = $category ?: get_category(get_option('default_category'))->cat_name;
+    }
+
+    $taglist = ['single'];
+
+    foreach (wp_get_post_tags($post->ID) as $tag) {
+      $taglist[] = $tag->name;
+    }
+
+    $single_meta = [
+      'article:section' => $category,
+      'article:tag' => implode(' ', $taglist),
+      'article:publisher' => self::$facebook
+    ];
+
+    return $single_meta;
+  }
 }
 
 ?>

@@ -6,7 +6,7 @@
  */
 
 if (!comments_open() || post_password_required()) {
-    return;
+  return;
 }
 
 $textarea_html = '<textarea class="vspace--full comments__textarea" id="textarea" name="comment" required="required"></textarea>';
@@ -15,30 +15,30 @@ $textarea_html = '<textarea class="vspace--full comments__textarea" id="textarea
 
 <hr class="vcenter--full">
 <div class="comments" id="comments">
-    <?php if (have_comments()) : ?>
-        <ul class="comments__commentlist vspace--triple">
-            <?php wp_list_comments([
-                'callback' => 'bloodfang_theme_comments',
-                'avatar_size' => 0,
-                'format' => 'html5',
-                'style' => 'ul'
-            ]); ?>
-        </ul>
-    <?php endif; ?>
+  <?php if (have_comments()) : ?>
+    <ul class="comments__commentlist vspace--triple">
+      <?php wp_list_comments([
+        'callback' => 'bloodfang_theme_comments',
+        'avatar_size' => 0,
+        'format' => 'html5',
+        'style' => 'ul'
+      ]); ?>
+    </ul>
+  <?php endif; ?>
 
-    <?php if (get_comment_pages_count() > 1) {
-        bloodfang_partial('pagination', 'comment');
-    } ?>
+  <?php if (get_comment_pages_count() > 1) {
+    bloodfang_partial('pagination', 'comment');
+  } ?>
 
-    <div class="noprint" id="comments__entry">
-        <?php comment_form([
-            'class_form' => 'comments__form',
-            'id_submit' => 'comments__submit',
-            'title_reply' => '',
-            'comment_field' => $textarea_html,
-            'comment_form_before_fields' => '<div class="comments__form">',
-            'comment_form_after_fields' => '</div>',
-            'fields' => bloodfang_commentform_fields()
-        ]); ?>
-    </div>
+  <div class="noprint" id="comments__entry">
+    <?php comment_form([
+      'class_form' => 'comments__form',
+      'id_submit' => 'comments__submit',
+      'title_reply' => '',
+      'comment_field' => $textarea_html,
+      'comment_form_before_fields' => '<div class="comments__form">',
+      'comment_form_after_fields' => '</div>',
+      'fields' => bloodfang_commentform_fields()
+    ]); ?>
+  </div>
 </div>
