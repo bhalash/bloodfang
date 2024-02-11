@@ -1,16 +1,14 @@
-![](screenshot.png)
-
-# Sheepie
-Sheepie is a light, bottom-up responsive WordPress theme, designed for performance and extension: minimal JavaScript, optimized CSS and an extensible assets pipeline.
+# Bloodfang
+Bloodfang is a light, bottom-up responsive WordPress theme, designed for performance and extension: minimal JavaScript, optimized CSS and an extensible assets pipeline.
 
 ## Demo
-I use Sheepie for my [own site](http://www.bhalash.com). 
+I use Bloodfang for my [own site](http://www.bhalash.com). 
 
 ## Installation
 I use [Gulp](http://gulpjs.com/) to build assets, which requires [Node.js](https://nodejs.org/en/) in turn.
 
-    git clone https://github.com/bhalash/sheepie /path/to/wp-content/themes/sheepie
-    cd /path/to/wp-content/themes/sheepie
+    git clone https://github.com/bhalash/bloodfang /path/to/wp-content/themes/bloodfang
+    cd /path/to/wp-content/themes/bloodfang
     npm install
     npm run build
 
@@ -20,8 +18,8 @@ To produce [source maps](http://thesassway.com/intermediate/using-source-maps-wi
     npm run dev
 
 ## Licenses
-#### Sheepie
-All first-party code in Sheepie is licensed under the GPL v3 or later. 
+#### Bloodfang
+All first-party code in Bloodfang is licensed under the GPL v3 or later. 
 
 > This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public > License, version 3, as published by the Free Software Foundation.
 >

@@ -5,7 +5,7 @@
  * @copyright 2015 Mark Grealish
  * @license GPL-3.0
  * @version 1.0
- * @link https://github.com/bhalash/sheepie
+ * @link https://github.com/bhalash/bloodfang
  */
 
 (function($, document, window) {

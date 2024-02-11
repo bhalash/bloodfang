@@ -4,22 +4,22 @@
  * Main PHP Functions
  *
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
-$GLOBALS['sheepie_version'] = '1.1.3';
+$GLOBALS['bloodfang_version'] = '1.1.3';
 
 /**
- * Sheepie Setup
+ * Bloodfang Setup
  */
 
 add_action('after_setup_theme', function() {
-    sheepie_includes();
+    bloodfang_includes();
 
     remove_action('wp_head', 'wp_generator');
 
@@ -43,7 +43,7 @@ add_action('after_setup_theme', function() {
 
     $GLOBALS['content_width'] = 880;
 
-    $sheepie_social = new Social_Meta([
+    $bloodfang_social = new Social_Meta([
         'facebook' => 'bhalash',
         'twitter' => '@bhalash'
     ]);
@@ -53,10 +53,10 @@ add_action('after_setup_theme', function() {
  * Theme Includes
  */
 
-function sheepie_includes() {
+function bloodfang_includes() {
     $theme_includes = [
-        'includes/sheepie-assets.php',
-        'includes/sheepie-comments.php',
+        'includes/bloodfang-assets.php',
+        'includes/bloodfang-comments.php',
         'lib/related-posts.php',
         'lib/archive-functions.php',
         'lib/article-images.php',
@@ -77,7 +77,7 @@ function sheepie_includes() {
  * @param   string      $slug           Partial slug.
  */
 
-function sheepie_partial($name, $slug = '') {
+function bloodfang_partial($name, $slug = '') {
     get_template_part('/partials/' . $name, $slug);
 }
 
@@ -105,8 +105,8 @@ add_action('wp_head', function() {
 add_action('widgets_init', function() {
     register_sidebar([
         'id' => 'theme-widgets',
-        'name' => __('Sheepie Footer Widgets', 'sheepie'),
-        'description' => __('Sheepie\'s widgets will display in the mail column, below all other content.', 'sheepie'),
+        'name' => __('Bloodfang Footer Widgets', 'bloodfang'),
+        'description' => __('Bloodfang\'s widgets will display in the mail column, below all other content.', 'bloodfang'),
         'before_widget' => '<div class="sidebar-widget">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="widget-title">',
@@ -120,8 +120,8 @@ add_action('widgets_init', function() {
 
 add_action('init', function() {
     register_nav_menus([
-        'top-menu' => __('Header Menu', 'sheepie'),
-        'top-social' => __('Header Social Links', 'sheepie')
+        'top-menu' => __('Header Menu', 'bloodfang'),
+        'top-social' => __('Header Social Links', 'bloodfang')
     ]);
 });
 
@@ -131,12 +131,12 @@ add_action('init', function() {
  @return string         $wrap       Nav menu wrapped in string.
  */
 
-function sheepie_nav_menu_search() {
+function bloodfang_nav_menu_search() {
     $search = sprintf(
         '<li class="%s"><a class="toggle" data-click="modal:show:search" href=""><span class="%s">%s</span></a></li>',
         'search menu-item menu-item-type-custom menu-item-object-custom social',
         'social__icon',
-        __('Search', 'sheepie')
+        __('Search', 'bloodfang')
     );
 
     $wrap  = '<ul id="%1$s" class="%2$s">';
@@ -171,7 +171,7 @@ add_filter('nav_menu_css_class', function($classes, $item) {
  * @return  string                  The avatar's URL.
  */
 
-function sheepie_avatar($id_or_email, $alt = '', $classes = '', $args = null) {
+function bloodfang_avatar($id_or_email, $alt = '', $classes = '', $args = null) {
     $avatar = get_avatar_url($id_or_email, $args);
     return sprintf('<img class="%s" src="%s" alt="%s" />', $classes, $avatar, $alt);
 }
@@ -182,16 +182,16 @@ function sheepie_avatar($id_or_email, $alt = '', $classes = '', $args = null) {
  * Output post header information (category and date).
  */
 
-function sheepie_postmeta() {
+function bloodfang_postmeta() {
     printf('<a href="%s"><time rel="date" datetime="%s">%s</time></a>',
         get_month_link(get_the_time('Y'), get_the_time('n')),
         get_the_time('Y-m-d H:i'),
         get_the_time(get_option('date_format'))
     );
 
-    _e(' in ', 'sheepie');
+    _e(' in ', 'bloodfang');
     the_category(', ');
-    edit_post_link(__('edit post', 'sheepie'), ' / ', '');
+    edit_post_link(__('edit post', 'bloodfang'), ' / ', '');
 }
 
 /**

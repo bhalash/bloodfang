@@ -4,12 +4,12 @@
  * Site Pagination Link
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -18,7 +18,7 @@ $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 <nav class="noprint pagination pagination--site" id="pagination--site">
     <p class="pagination__previous previous-page meta">
-        <?php previous_posts_link(__('Page ', 'sheepie') . ($page - 1)); ?>
+        <?php previous_posts_link(__('Page ', 'bloodfang') . ($page - 1)); ?>
     </p>
     <?php if (function_exists('arc_query_has_pages') && arc_query_has_pages()) : ?>
         <p class="pagination__count meta">
@@ -26,6 +26,6 @@ $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
         </p>
     <?php endif; ?>
     <p class="pagination__next next-page meta">
-        <?php next_posts_link(__('Page ', 'sheepie') . ($page + 1)); ?>
+        <?php next_posts_link(__('Page ', 'bloodfang') . ($page + 1)); ?>
     </p>
 </nav>

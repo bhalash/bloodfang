@@ -4,12 +4,12 @@
  * Single Post Template
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 get_header();
@@ -17,7 +17,7 @@ get_header();
 if (have_posts()) {
     while (have_posts()) {
         the_post();
-        sheepie_partial('article', 'full');
+        bloodfang_partial('article', 'full');
 
         if (function_exists('rp_get_related')) {
             printf('<hr class="%s">', 'vspace--full noprint');
@@ -33,7 +33,7 @@ if (have_posts()) {
 
             foreach ($related as $post) {
                 setup_postdata($post);
-                sheepie_partial('article', 'related');
+                bloodfang_partial('article', 'related');
             }
 
             printf('</div>');
@@ -43,7 +43,7 @@ if (have_posts()) {
         comments_template();
     }
 } else {
-    sheepie_partial('article', 'missing');
+    bloodfang_partial('article', 'missing');
 }
 
 get_footer();

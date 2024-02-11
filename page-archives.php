@@ -7,12 +7,12 @@
  * tag. You are welcome to insert any custom taxonomies and post types wherever.
  *
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 get_header();
@@ -33,7 +33,7 @@ if (!function_exists('arc_year_first_post')) {
         printf('<h2 class="%s" %s><a title="%s" href="%s">%s</a></h2>',
             'archive-year-name',
             post_image_url_style($first_post, false),
-            __('Archives for the year ', 'sheepie') . $year,
+            __('Archives for the year ', 'bloodfang') . $year,
             get_year_link($year),
             $year
         );
@@ -57,7 +57,7 @@ if (!function_exists('arc_year_first_post')) {
 
 </div>
 <hr class="vcenter--double">
-<h3 class="title vspace--half"><?php _e('Statistics', 'sheepie'); ?></h3>
+<h3 class="title vspace--half"><?php _e('Statistics', 'bloodfang'); ?></h3>
 <p><?php arc_blog_statistics(true); ?></p>
 <hr class="vcenter--double">
 <?php get_footer(); ?>

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Sheepie Assets
+ * Bloodfang Assets
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 add_action('wp_enqueue_scripts', function() {
@@ -31,11 +31,11 @@ add_action('wp_enqueue_scripts', function() {
 
     $assets['js'] = [
         // 'script-name' => ['script_path', ['dependency']
-        'functions' => ['sheepie.js', ['jquery']]
+        'functions' => ['bloodfang.js', ['jquery']]
     ];
 
-    sheepie_css($assets, $paths);
-    sheepie_js($assets, $paths);
+    bloodfang_css($assets, $paths);
+    bloodfang_js($assets, $paths);
 });
 
 /*
@@ -91,9 +91,9 @@ if (!is_admin()) {
  * @param   array       $paths          Theme asset paths.
  */
 
-function sheepie_js($assets, $paths) {
+function bloodfang_js($assets, $paths) {
     $js = $assets['js'];
-    $version = $GLOBALS['sheepie_version'];
+    $version = $GLOBALS['bloodfang_version'];
 
     if (!empty($js)) {
         foreach ($js as $name => $script) {
@@ -115,13 +115,13 @@ function sheepie_js($assets, $paths) {
  * @param   array       $paths          Theme asset paths.
  */
 
-function sheepie_css($assets, $paths) {
+function bloodfang_css($assets, $paths) {
     $css = $assets['css'];
     $fonts = $assets['fonts'];
-    $version = $GLOBALS['sheepie_version'];
+    $version = $GLOBALS['bloodfang_version'];
 
     if (!empty($fonts)) {
-        wp_register_style('google-fonts', sheepie_google_font_url($fonts));
+        wp_register_style('google-fonts', bloodfang_google_font_url($fonts));
         wp_enqueue_style('google-fonts');
     }
 
@@ -139,7 +139,7 @@ function sheepie_css($assets, $paths) {
  * @return  string  $google_url     Parsed URL of fonts to be enqueued.
  */
 
-function sheepie_google_font_url($fonts) {
+function bloodfang_google_font_url($fonts) {
     $google_url = '//fonts.googleapis.com/css?family=';
 
     foreach ($fonts as $index => $font) {

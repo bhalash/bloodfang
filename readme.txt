@@ -7,13 +7,13 @@
           |||  |||`-'._.--._.-'
                      |||  |||
 
-Sheepie is a light, bottom-up responsive WordPress theme, designed for performance and extension: minimal JavaScript, optimized CSS and an extensible assets pipeline.
+Bloodfang is a light, bottom-up responsive WordPress theme, designed for performance and extension: minimal JavaScript, optimized CSS and an extensible assets pipeline.
 
-I use Sheepie for my own site, if you want a demo: http://www.bhalash.com.
+I use Bloodfang for my own site, if you want a demo: http://www.bhalash.com.
 
 =================================================================================
 
-All first-party code in Sheepie is licensed under the GPL v3 or later. 
+All first-party code in Bloodfang is licensed under the GPL v3 or later. 
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public > License, version 3, as published by the Free Software Foundation.
 

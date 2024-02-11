@@ -4,12 +4,12 @@
  * Related Article Template
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 ?>
@@ -19,7 +19,7 @@
         <h4 class="title vspace--quarter">
             <a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
         </h4>
-        <p class="meta"><?php echo sheepie_postmeta(); ?></p>
+        <p class="meta"><?php echo bloodfang_postmeta(); ?></p>
     </header>
     <p class="related__excerpt text--small">
         <?php if (strlen(get_the_excerpt()) < 40) : ?>

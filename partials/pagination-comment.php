@@ -4,24 +4,24 @@
  * Comment Pagination Links
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 ?>
 
 <nav class="pagination pagination--comment noprint" id="pagination--comment">
     <p class="pagination__previous previous-comment meta">
-        <?php previous_comments_link(__('Previous', 'sheepie')); ?>
+        <?php previous_comments_link(__('Previous', 'bloodfang')); ?>
     </p>
     <p class="pagination__count meta">
         <?php get_comment_pages_count(); ?>
     </p>
     <p class="pagination__next next-comment meta">
-        <?php next_comments_link(__('Next', 'sheepie')); ?>
+        <?php next_comments_link(__('Next', 'bloodfang')); ?>
     </p>
 </nav>

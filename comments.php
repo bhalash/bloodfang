@@ -4,12 +4,12 @@
  * Comments Template
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 if (!comments_open() || post_password_required()) {
@@ -25,7 +25,7 @@ $textarea_html = '<textarea class="vspace--full comments__textarea" id="textarea
     <?php if (have_comments()) : ?>
         <ul class="comments__commentlist vspace--triple">
             <?php wp_list_comments([
-                'callback' => 'sheepie_theme_comments',
+                'callback' => 'bloodfang_theme_comments',
                 'avatar_size' => 0,
                 'format' => 'html5',
                 'style' => 'ul'
@@ -34,7 +34,7 @@ $textarea_html = '<textarea class="vspace--full comments__textarea" id="textarea
     <?php endif; ?>
 
     <?php if (get_comment_pages_count() > 1) {
-        sheepie_partial('pagination', 'comment');
+        bloodfang_partial('pagination', 'comment');
     } ?>
 
     <div class="noprint" id="comments__entry">
@@ -45,7 +45,7 @@ $textarea_html = '<textarea class="vspace--full comments__textarea" id="textarea
             'comment_field' => $textarea_html,
             'comment_form_before_fields' => '<div class="comments__form">',
             'comment_form_after_fields' => '</div>',
-            'fields' => sheepie_commentform_fields()
+            'fields' => bloodfang_commentform_fields()
         ]); ?>
     </div>
 </div>

@@ -7,12 +7,12 @@
  * all up here.
  *
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 $margin_class = (is_single() || is_page()) ? 'vspace--full' : 'vspace--double';
@@ -30,7 +30,7 @@ $margin_class = (is_single() || is_page()) ? 'vspace--full' : 'vspace--double';
 
     <p>
         <?php if (is_single() || is_page()) : ?>
-            <?php echo sheepie_postmeta(); ?>
+            <?php echo bloodfang_postmeta(); ?>
         <?php else : ?>
             <span class="text--italic"><?php bloginfo('description'); ?></span>
          <?php endif; ?>

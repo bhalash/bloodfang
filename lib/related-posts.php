@@ -4,7 +4,7 @@
  * Related Posts
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie Related Posts
+ * @package    Bloodfang Related Posts
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0

@@ -4,12 +4,12 @@
  * Excerpted Article
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 ?>
@@ -20,7 +20,7 @@
             <?php printf('<a class="%s" href="%s">%s</a>', 'navbar__title-link', get_the_permalink(), get_the_title()); ?>
         </h4>
         <?php if (!is_page()) : ?>
-            <span class="postmeta text--small"><?php sheepie_postmeta(); ?></span>
+            <span class="postmeta text--small"><?php bloodfang_postmeta(); ?></span>
         <?php endif; ?>
     </header>
     <p class="article__content excerpt__content text--small">

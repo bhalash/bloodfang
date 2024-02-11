@@ -2,12 +2,12 @@
  * Stylesheet Variables
  * -----------------------------------------------------------------------------
  * @category   Stylesheet
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    3.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 /**
@@ -15,7 +15,7 @@
  * -----------------------------------------------------------------------------
  */
 
-$sheepie-media-preset: add-media-presets((
+$bloodfang-media-preset: add-media-presets((
   1600: 'only screen and (min-width: 1600px)',
   1280: 'only screen and (min-width: 1280px)',
   1024: 'only screen and (min-width: 1024px)',
@@ -73,7 +73,7 @@ $split-column-margin: 1.5%;
  * -----------------------------------------------------------------------------
  */
 
-$sheepie-colours: add-color((
+$bloodfang-colours: add-color((
   blues: ( base: #00a3f5),
   grey: ( base: #e6e6e6),
   rmwb: ( base: #343537)

@@ -19,7 +19,7 @@ var assets = {
         dest:   'assets/css/'
     },
     js: {
-        concat: 'sheepie.js',
+        concat: 'bloodfang.js',
         source: 'assets/js/*.js',
         dest:   'assets/js/min/'
     },

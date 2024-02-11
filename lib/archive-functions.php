@@ -204,9 +204,9 @@ function arc_blog_statistics($echo = false) {
         get_bloginfo('name')
     );
 
-    $categories = __('The blog %s has %s posts in %s categories, that are labelled with %s tags.', 'sheepie');
-    $visitors = __('%s different visitors have left a total of %s comments.', 'sheepie');
-    $average = __('On average, a new post has been published every %s days over the last %s days.', 'sheepie');
+    $categories = __('The blog %s has %s posts in %s categories, that are labelled with %s tags.', 'bloodfang');
+    $visitors = __('%s different visitors have left a total of %s comments.', 'bloodfang');
+    $average = __('On average, a new post has been published every %s days over the last %s days.', 'bloodfang');
 
     $stats[] = sprintf($categories, $anchor, wp_count_posts()->publish, count(get_categories()), count(get_tags()));
     $stats[] = sprintf($visitors, arc_get_comment_authors_count(), wp_count_comments()->total_comments);
@@ -299,7 +299,7 @@ function arc_search_results_count($echo = false) {
     // Stops an overage on the final page of the search.
     $count_high = ($position > $total_results) ? $total : $position;
 
-    $count = sprintf(__('Results %s to %s of %s', 'sheepie'),
+    $count = sprintf(__('Results %s to %s of %s', 'bloodfang'),
         $count_low,
         $count_high,
         $total

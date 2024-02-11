@@ -4,12 +4,12 @@
  * PHP Header File
  * -----------------------------------------------------------------------------
  * @category   PHP Script
- * @package    Sheepie
+ * @package    Bloodfang
  * @author     Mark Grealish <mark@bhalash.com>
  * @copyright  Copyright (c) 2015 Mark Grealish
  * @license    https://www.gnu.org/copyleft/gpl.html The GNU GPL v3.0
  * @version    1.0
- * @link       https://github.com/bhalash/sheepie
+ * @link       https://github.com/bhalash/bloodfang
  */
 
 global $post;
@@ -31,9 +31,9 @@ $html = get_bloginfo('html_type');
 </head>
 <body <?php body_class(); ?>>
     <?php if (is_single() || is_page()) : ?>
-        <?php sheepie_partial('gohome'); ?>
+        <?php bloodfang_partial('gohome'); ?>
     <?php endif; ?>
     <main class="main" id="main">
         <?php if (!is_404() && !is_single() && !is_page()) {
-            sheepie_partial('header', 'title');
+            bloodfang_partial('header', 'title');
         } ?>
